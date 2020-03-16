@@ -1,8 +1,5 @@
 image: Ubuntu1804
 
-before_install :
-  - chmod + x gradlew
-
 branches:
   only:
     - master
