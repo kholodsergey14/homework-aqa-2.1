@@ -1,5 +1,8 @@
 image: Ubuntu1804
 
+before_install :
+  - chmod + x gradlew
+
 branches:
   only:
     - master
@@ -10,7 +13,7 @@ install:
   - ps: $App = Start-Process -FilePath java -ArgumentList "-jar ./artifacts/app-order.jar" -PassThru
 
 build_script:
-  - ps: ./gradlew test --info "-Dselenide.headless=true"
+  - ps: ./gradlew test --info "-Dselenide.headless=true"  # стартуем Selenide в Headless-режиме (см.ниже)
 
 on_finish:
-  - ps: Stop-Process -Id $App.Id
+  - ps: Stop-Process -Id $App.Id  # оставливаем SUT

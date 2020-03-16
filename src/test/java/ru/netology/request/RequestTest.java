@@ -20,7 +20,7 @@ public class RequestTest {
     void shouldSubmitRequest() {
         SelenideElement form = $("form.form");
         form.$("[data-test-id=name] input").setValue("Сергей Холод");
-        form.$("[data-test-id=phone] input").setValue("+79193312133");
+        form.$("[data-test-id=phone] input").setValue("+79193333333");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
@@ -32,7 +32,7 @@ public class RequestTest {
     void shouldReturnErrorIfEmptyName() {
         SelenideElement form = $("form.form");
         form.$("[data-test-id=name] input").setValue("");
-        form.$("[data-test-id=phone] input").setValue("+79193312133");
+        form.$("[data-test-id=phone] input").setValue("+79193333333");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
         String expected = "Поле обязательно для заполнения";
@@ -43,8 +43,8 @@ public class RequestTest {
     @DisplayName("Should return error if name entered with english letters")
     void shouldReturnErrorIfNameIsInEnglish() {
         SelenideElement form = $("form.form");
-        form.$("[data-test-id=name] input").setValue("Kholod Sergey");
-        form.$("[data-test-id=phone] input").setValue("+79193312133");
+        form.$("[data-test-id=name] input").setValue("Sergey Kholod");
+        form.$("[data-test-id=phone] input").setValue("+79193333333");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
@@ -55,8 +55,8 @@ public class RequestTest {
     @DisplayName("Should return error if name entered with digits")
     void shouldReturnErrorIfNameWithDigits() {
         SelenideElement form = $("form.form");
-        form.$("[data-test-id=name] input").setValue("Сергей Холод 1415");
-        form.$("[data-test-id=phone] input").setValue("+79193312133");
+        form.$("[data-test-id=name] input").setValue("Сергей Холод 2211");
+        form.$("[data-test-id=phone] input").setValue("+79193333333");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
         String expected = "Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.";
@@ -81,10 +81,10 @@ public class RequestTest {
     void shouldReturnErrorIfWrongPhone() {
         SelenideElement form = $("form.form");
         form.$("[data-test-id=name] input").setValue("Сергей Холод");
-        form.$("[data-test-id=phone] input").setValue("+7919331");
+        form.$("[data-test-id=phone] input").setValue("+7919333");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
-        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79193312133.";
+        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79193333333.";
         $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText(expected));
     }
 
@@ -96,7 +96,7 @@ public class RequestTest {
         form.$("[data-test-id=phone] input").setValue("чёрненький такой");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
-        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79193312133.";
+        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79193333333.";
         $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText(expected));
     }
 
@@ -108,7 +108,7 @@ public class RequestTest {
         form.$("[data-test-id=phone] input").setValue("chernenkiy takoy");
         form.$(".checkbox__box").click();
         form.$("button.button").click();
-        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79193312133.";
+        String expected = "Телефон указан неверно. Должно быть 11 цифр, например, +79193333333.";
         $("[data-test-id=phone].input_invalid .input__sub").shouldHave(exactText(expected));
     }
 
@@ -117,7 +117,7 @@ public class RequestTest {
     void shouldReturnErrorIfNotClickedAgreement() {
         SelenideElement form = $("form.form");
         form.$("[data-test-id=name] input").setValue("Сергей Холод");
-        form.$("[data-test-id=phone] input").setValue("+79193312133");
+        form.$("[data-test-id=phone] input").setValue("+79193333333");
         form.$("button.button").click();
         String expected = "Я соглашаюсь с условиями обработки и использования моих персональных данных и разрешаю сделать запрос в бюро кредитных историй";
         $("[data-test-id=agreement].input_invalid").shouldHave(exactText(expected));
