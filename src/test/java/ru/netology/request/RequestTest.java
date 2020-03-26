@@ -11,11 +11,6 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RequestTest {
 
-    @BeforeAll
-    static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\UserSK\\Desktop\\chromedriver.exe");
-    }
-
     @BeforeEach
     void setup() {
         open("http://localhost:9999");
